@@ -1,4 +1,4 @@
-const CACHE_NAME = "tracker-diario-v1";
+const CACHE_NAME = "tracker-diario-v2";
 
 const FILES_TO_CACHE = [
   "./",
