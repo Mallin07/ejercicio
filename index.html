@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Tracker diario</title>
+
+  <meta name="theme-color" content="#f97316" />
+
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <main>
+
+    <h1>🏋️ Tracker diario 🍗</h1>
+
+    <section class="card">
+
+      <h2>Hoy</h2>
+
+      <label>
+        <input type="checkbox" id="sportCheck" />
+        He hecho deporte
+      </label>
+
+      <label>
+        <input type="checkbox" id="foodCheck" />
+        He comido bien
+      </label>
+
+      <button id="saveBtn">
+        Guardar día
+      </button>
+
+    </section>
+
+    <section class="card">
+
+      <div class="calendar-header">
+
+        <button id="prevMonth">←</button>
+
+        <h2 id="monthTitle"></h2>
+
+        <button id="nextMonth">→</button>
+
+      </div>
+
+      <div class="weekdays">
+        <span>L</span>
+        <span>M</span>
+        <span>X</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+        <span>D</span>
+      </div>
+
+      <div id="calendar" class="calendar"></div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+
+</body>
+</html>
