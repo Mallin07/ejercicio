@@ -7,6 +7,7 @@ const prevMonth = document.getElementById("prevMonth");
 const nextMonth = document.getElementById("nextMonth");
 
 let currentDate = new Date();
+let selectedDate = getTodayKey();
 
 function getData() {
   return JSON.parse(localStorage.getItem("dailyTracker")) || {};
@@ -22,21 +23,19 @@ function getTodayKey() {
   return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 }
 
-function loadToday() {
-  const data = getData();
-  const today = getTodayKey();
+function selectDate(dateKey) {
+  selectedDate = dateKey;
 
-  if (data[today]) {
-    sportCheck.checked = data[today].sport;
-    foodCheck.checked = data[today].food;
-  }
+  const data = getData();
+
+  sportCheck.checked = data[dateKey]?.sport || false;
+  foodCheck.checked = data[dateKey]?.food || false;
 }
 
 saveBtn.addEventListener("click", () => {
   const data = getData();
-  const today = getTodayKey();
 
-  data[today] = {
+  data[selectedDate] = {
     sport: sportCheck.checked,
     food: foodCheck.checked
   };
@@ -96,6 +95,10 @@ function renderCalendar() {
 
     const isFuture = currentDay > today;
 
+    if (dateKey === selectedDate) {
+      dayBox.classList.add("selected");
+    }
+
     dayBox.innerHTML = `
       <strong>${day}</strong>
 
@@ -109,6 +112,11 @@ function renderCalendar() {
         </span>
       </div>
     `;
+
+    dayBox.addEventListener("click", () => {
+      selectDate(dateKey);
+      renderCalendar();
+    });
 
     calendar.appendChild(dayBox);
   }
@@ -124,5 +132,5 @@ nextMonth.addEventListener("click", () => {
   renderCalendar();
 });
 
-loadToday();
+selectDate(getTodayKey());
 renderCalendar();

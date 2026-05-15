@@ -145,8 +145,8 @@ button:active {
 }
 
 .icon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-radius: 7px;
   display: flex;
   align-items: center;
@@ -162,6 +162,20 @@ button:active {
 
 .red {
   background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+#selectedDateText {
+  margin-top: 10px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #c2410c;
+  text-align: center;
+}
+
+.day.selected {
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+  transform: scale(1.03);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.18);
 }
 
 @media (min-width: 768px) {
@@ -207,3 +221,4 @@ button:active {
     border-radius: 10px;
   }
 }
+
